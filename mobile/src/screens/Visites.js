@@ -10,7 +10,6 @@ export default function Visites() {
   return (
     <View style={styles.main}>
         <ConsultationCard />
-        <ModalContainer displayed={visible} />
     </View>
   );
 }

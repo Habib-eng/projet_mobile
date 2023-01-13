@@ -4,7 +4,8 @@ export const styles = StyleSheet.create({
     main:{
         justifyContent: "center",
         display:'flex',
-        padding: 50
+        padding: 20,
+        borderRadius: 10
     },
     hero: {
         display: 'flex',

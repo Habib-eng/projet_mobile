@@ -1,53 +1,56 @@
 import { View, StyleSheet } from "react-native";
-import { useState } from "react";
-import { Modal, Portal, Button, Provider } from 'react-native-paper';
-import {
-  Card,
-  Chip,
-  Text,
-} from "react-native-paper";
+import { useEffect, useState } from "react";
+import { Modal, Portal, Button, Provider } from "react-native-paper";
+import { Card, Chip, Text } from "react-native-paper";
 import { ModalContainer } from "../containers/Modal";
 import Action from "./atoms/VisiteAction";
 
-export default function ConsultationCard() {
-  const [visible, setVisible] = useState(true);
-  const showModal = () => {
-    console.log('hello')
-    setVisible(true)
-  }
+const table = [23, 24, 25];
 
-  const hideModal = () => {
-    setVisible(false)
-  }
-  const showOrdonnance = () => {
-    showModal()
+export default function ConsultationCard() {
+  const [visible, setVisible] = useState(false);
+  const [visitList, setVisitList] = useState([]);
+  const showModal = () => {
+    console.log("hello");
   };
 
-  const showCertificat = () => {};
-
-  const showResume = () => {};
+  useEffect(() => {
+    setVisitList(table);
+  }, []);
+  const hideModal = () => {
+    setVisible(false);
+  };
+  const showOrdonnance = () => {
+    // showModal()
+  };
   return (
-    <Card elevation={5}>
-      <Card.Title title="visite N° 1" subtitle="16 Mar, 2022" />
-      <Card.Content>
-        <View style={styles.content}>
-          <Chip selectedColor="#859">Subject</Chip>
+    <>
+      {visitList?.map((visit) => (
+        <View style={{padding: 10}}>
+          <Card elevation={5}>
+            <Card.Title title={`visite N° ${visit}`} subtitle="16 Mar, 2022" />
+            <Card.Content>
+              <View style={styles.content}>
+                <Chip selectedColor="#859">Subject</Chip>
+              </View>
+              <View style={styles.textContent}>
+                <Text>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry.{" "}
+                </Text>
+              </View>
+            </Card.Content>
+            <Card.Actions>
+              <View style={styles.actions}>
+                <Action icon="camera" color="#403D58" />
+                <Action icon="text" color="#ACD2ED" />
+                <Action icon="heart" color="#FC7753" />
+              </View>
+            </Card.Actions>
+          </Card>
         </View>
-        <View style={styles.textContent}>
-          <Text>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry.{" "}
-          </Text>
-        </View>
-      </Card.Content>
-      <Card.Actions>
-        <View style={styles.actions}>
-          <Action action={showModal} icon="camera" color="#403D58" />
-          <Action icon="text" color="#ACD2ED" />
-          <Action icon="heart" color="#FC7753" />
-        </View>
-      </Card.Actions>
-    </Card>
+      ))}
+    </>
   );
 }
 
